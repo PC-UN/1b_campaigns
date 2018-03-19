@@ -1,0 +1,29 @@
+{
+  "name": "campaigns_ms",
+  "version": "1.0.0",
+  "description": "microservice campaigns",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "test"
+  },
+  "keywords": [
+    "campaigns",
+    "microservice",
+    "posconsumo",
+    "residuos"
+  ],
+  "author": "jairo suarez",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.0.10"
+  }
+}

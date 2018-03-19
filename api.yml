@@ -1,0 +1,209 @@
+#Test with: http://editor.swagger.io/
+
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Microservice for Campaigns
+  description: JavaScript + MongoDB
+  license:
+    name: Project for Software Architecture 2018-I Unal
+host: 192.168.99.101:5000
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /campaigns:
+    post:
+      summary: Creates a new campaign
+      operationId: createCampaign
+      parameters:
+        - name: campaign
+          in: body
+          required: true
+          description: Campaign Object
+          schema:
+            $ref: '#/definitions/CampaignInput'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    get:
+      summary: Returns all campaigns
+      operationId: getAllCampaigns
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/CampaignsList'
+        '406':
+          description: Not Acceptable (Invalid Params)
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /campaigns/{id}:
+    get:
+      summary: Returns a campaign with the given id
+      operationId: getCampaignById
+      parameters:
+        - name: id
+          in: path
+          description: The id of the campaign to be returned
+          required: true
+          type: hash
+      responses:
+        '200':
+          description: Ok
+          schema:
+            $ref: '#/definitions/Campaign'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    put:
+      summary: Updates a campaign with the given id
+      operationId: updateCampaign
+      parameters:
+        - name: id
+          in: path
+          description: The id of the campaign to be updated
+          required: true
+          type: hash
+        - name: campaign
+          in: body
+          required: true
+          description: Campaign Object
+          schema:
+            $ref: '#/definitions/CampaignInput'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+    delete:
+      summary: Deletes a campaign with the given id
+      operationId: deleteCampaign
+      parameters:
+        - name: id
+          in: path
+          description: The id of the campaign to be deleted
+          required: true
+          type: hash
+      responses:
+        '200':
+          description: Ok
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/ErrorModel'
+        '406':
+            description: Not Acceptable (Invalid Params)
+            schema:
+              $ref: '#/definitions/ErrorModel'
+        '500':
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+
+  # Campaign
+  Campaign:
+    type: object
+    properties:
+      id:
+        type: hash
+      name:
+        type: string
+      city:
+        type: string
+      address:
+        type: string
+      ubitacion:
+        type: array
+      created_date:
+        type: date
+      start_date:
+        type: date
+      end_date:
+        type: date
+      status:
+        type: string
+      program:
+        type: string
+
+  CampaignInput:
+    type: object
+    properties:
+      name:
+        type: string
+      city:
+        type: string
+      address:
+        type: string
+      ubitacion:
+        type: array
+      created_date:
+        type: date
+      start_date:
+        type: date
+      end_date:
+        type: date
+      status:
+        type: string
+      program:
+        type: string
+
+  CampaignsList:
+    type: object
+    required:
+      - total
+      - list
+    properties:
+      total:
+        type: number
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/Campaign'
+
+# Errors
+  ErrorModel:
+    type: object
+    properties:
+      message:
+        type: string
