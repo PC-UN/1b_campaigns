@@ -1,0 +1,21 @@
+version: "2"
+services:
+  campaigns_ms:
+    build: .
+    command: npm start
+    ports:
+      - "4005:4005"
+    links:
+      - campaigns_db
+    depends_on:
+      - campaigns_db
+  campaigns_db:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+  adminmongo:
+    image: "mrvautin/adminmongo"
+    ports:
+      - "1234:1234"

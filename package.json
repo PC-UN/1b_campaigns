@@ -1,0 +1,32 @@
+{
+  "name": "campaigns_ms",
+  "version": "1.0.0",
+  "description": "microservice campaigns",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "test"
+  },
+  "keywords": [
+    "campaigns",
+    "microservice",
+    "posconsumo",
+    "residuos"
+  ],
+  "author": "jairo suarez",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  },
+  "dependencies": {
+    "apollo-server-express": "^1.3.2",
+    "express": "^4.16.3",
+    "graphql-anywhere-mongodb": "^0.5.2",
+    "graphql-anywhere-mongodb-express": "^0.3.0",
+    "mongoose": "^5.0.10"
+  }
+}
