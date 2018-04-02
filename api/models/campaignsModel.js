@@ -9,25 +9,14 @@ var CampaignSchema = new Schema({
   city: String,
   //Campaign address
   address: String,
-  ubication: [{
-    lat : String,
-    lng : String
-  }],
+  ubication: [Array],
   //Campaign dates
-  created_date: {
-    type: Date,
-    default: Date.now
-  },
+  //created_date: String,
+  created_date: { type: Date, default: Date.now },
   start_date: Date,
   end_date: Date,
   //Campaign status
-  status: {
-    type: [{
-      type: String,
-      enum: ['active', 'inactive']
-    }],
-    default: ['active']
-  },
+  status: { type: String,  enum: ['active', 'inactive'], default: 'active'},
   // Campaign program
   program: String
 });

@@ -4,10 +4,11 @@ swagger: '2.0'
 info:
   version: 1.0.0
   title: Microservice for Campaigns
-  description: JavaScript + MongoDB
+  description: JavaScript + MongoDB + NodeJs + Express
   license:
-    name: Project for Software Architecture 2018-I Unal
-host: 192.168.99.101:5000
+    name: Project Software Architecture 2018-I Unal
+host: 192.168.99.101:4005
+#host: localhost:4005
 basePath: /
 schemes:
   - http
@@ -64,7 +65,7 @@ paths:
           in: path
           description: The id of the campaign to be returned
           required: true
-          type: hash
+          type: string
       responses:
         '200':
           description: Ok
@@ -91,7 +92,7 @@ paths:
           in: path
           description: The id of the campaign to be updated
           required: true
-          type: hash
+          type: string
         - name: campaign
           in: body
           required: true
@@ -122,7 +123,7 @@ paths:
           in: path
           description: The id of the campaign to be deleted
           required: true
-          type: hash
+          type: string
       responses:
         '200':
           description: Ok
@@ -146,21 +147,21 @@ definitions:
     type: object
     properties:
       id:
-        type: hash
+        type: string
       name:
         type: string
       city:
         type: string
       address:
         type: string
-      ubitacion:
-        type: array
+      ubication:
+        type: string
       created_date:
-        type: date
+        type: string
       start_date:
-        type: date
+        type: string
       end_date:
-        type: date
+        type: string
       status:
         type: string
       program:
@@ -175,14 +176,14 @@ definitions:
         type: string
       address:
         type: string
-      ubitacion:
-        type: array
+      ubication:
+        type: string
       created_date:
-        type: date
+        type: string
       start_date:
-        type: date
+        type: string
       end_date:
-        type: date
+        type: string
       status:
         type: string
       program:
@@ -204,6 +205,13 @@ definitions:
 # Errors
   ErrorModel:
     type: object
+    required:
+      - message
+      - code
     properties:
       message:
         type: string
+      code:
+        type: number
+      description:
+        type: object

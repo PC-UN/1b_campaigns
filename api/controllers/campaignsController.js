@@ -16,9 +16,11 @@ exports.getCampaigns = function(req, res) {
 //Create campaign
 exports.createCampaign = function(req, res) {
   var new_campaign = new Campaign(req.body);
+  console.log(req.body);
   new_campaign.save(function(err, campaign) {
-    if (err)
+    if (err){
       res.send(err);
+    }
     res.json(campaign);
   });
 };
