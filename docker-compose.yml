@@ -4,7 +4,7 @@ services:
     build: .
     command: npm start
     ports:
-      - "4005:4005"
+      - "3302:4005"
     links:
       - campaigns_db
     depends_on:
@@ -14,8 +14,8 @@ services:
     volumes:
       - ./data:/data/db
     ports:
-      - "27017:27017"
+      - "4302:27017"
   adminmongo:
     image: "mrvautin/adminmongo"
     ports:
-      - "1234:1234"
+      - "4305:4305"
